@@ -29,8 +29,8 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		String processedStr1 = preProcess(str1);
-		String processedStr2 = preProcess(str2);
+		String processedStr1 = removeWhitespace(preProcess(str1));
+		String processedStr2 = removeWhitespace(preProcess(str2));
 
 		if (processedStr1.length() != processedStr2.length()) {
 			return false;
@@ -72,6 +72,21 @@ public class Anagram {
 			char c = str.charAt(i);
 			if (Character.isAlphabetic(c) || Character.isWhitespace(c)) {
 				result += Character.toLowerCase(c);
+			}
+		}
+
+		return result;
+	}
+
+	// This function is needed as we got a conflicting instruction of implementing
+	// preProcess and the test for isAnagram
+	public static String removeWhitespace(String str) {
+		String result = "";
+
+		for (int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
+			if (!Character.isWhitespace(c)) {
+				result += c;
 			}
 		}
 
