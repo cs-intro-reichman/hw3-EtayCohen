@@ -37,27 +37,27 @@ public class Anagram {
 		}
 
 		for (int i = 0; i < processedStr1.length(); i++) {
-			int charCounter = 0;
 			char c = processedStr1.charAt(i);
 
-			for (int j = 0; j < processedStr1.length(); j++) {
-				if (processedStr1.charAt(j) == c) {
-					charCounter++;
-				}
-			}
-
-			for (int j = 0; j < processedStr2.length(); j++) {
-				if (processedStr2.charAt(j) == c) {
-					charCounter--;
-				}
-			}
-
-			if (charCounter != 0) {
+			if (countOccurrences(c, processedStr1) != countOccurrences(c, processedStr2)) {
 				return false;
 			}
 		}
 
 		return true;
+	}
+
+	// Return the count of the times a given char appears in a string.
+	public static int countOccurrences(char c, String str) {
+		int count = 0;
+
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == c) {
+				count++;
+			}
+		}
+
+		return count;
 	}
 
 	// Returns a preprocessed version of the given string: all the letter characters
